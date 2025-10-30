@@ -6,19 +6,28 @@ using System.Threading.Tasks;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Data
-{
-    public class AnnoucementContext : DbContext
-    {
-        public AnnoucementContext(DbContextOptions<AnnoucementContext> options): base(options) { }
+namespace Infrastructure.Data;
 
-        DbSet<Announcement> Announcements { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+public class AnnouncementContext : DbContext
+{
+    public AnnouncementContext(DbContextOptions<AnnouncementContext> options): base(options) { }
+
+    public DbSet<Announcement> Announcements { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Announcement>(entity =>
         {
-            modelBuilder.Entity<Announcement>(entity => 
-            { 
-                entity.HasKey(e => e.Id);
-            });
-        }
+            entity.HasKey(e => e.Id);
+
+            entity.ToTable("announcements");
+
+            entity.Property(e => e.Title);
+            entity.Property(e => e.Content);
+            entity.Property(e => e.CreatedAt);
+            entity.Property(e => e.CreatorId);
+            entity.Property(e => e.ExpirationDate);
+            entity.Property(e => e.IsActive);
+            entity.Property(e => e.Guid);
+        });
     }
 }
