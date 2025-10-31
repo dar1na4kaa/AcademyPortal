@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: ./dockerfile
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=announcement;Username=postgres;Password=postgres"
     restart: always
     ports:
       - "5005:5005"
