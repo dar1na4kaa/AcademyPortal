@@ -1,6 +1,8 @@
+using Domain.Entities;
+
 namespace Application.Interfaces;
 
 public interface IAnnouncementService
 {
-    public void Test();
+    public Task CreateAsync(AnnouncementDTO announcement);
 }

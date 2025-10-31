@@ -4,8 +4,9 @@ namespace Application.Services;
 
 public class AnnouncementService(IAnnouncementRepository repository): IAnnouncementService
 {
-    public void Test()
+    public async Task CreateAsync(AnnouncementDTO announcement)
     {
-        repository.GetByGuidAsync(Guid.NewGuid());
+       await repository.CreateAsync(announcement);
+       await repository.SaveAsync();
     }
 }
