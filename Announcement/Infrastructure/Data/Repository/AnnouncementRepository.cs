@@ -16,6 +16,7 @@ public class AnnouncementRepository(AnnouncementContext context): IAnnouncementR
     public async Task CreateAsync(AnnouncementDTO announcement)
     {
         var entity = announcement.Map();
+        Console.WriteLine();
         await context.Announcements.AddAsync(entity);
     }
     public async Task SaveAsync()

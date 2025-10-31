@@ -10,7 +10,7 @@ namespace Application
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public Guid CreatorId { get; set; }
-        public DateOnly ExpirationDate { get; set; }
+        public required Guid CreatorId { get; set; }
+        public required DateOnly ExpirationDate { get; set; }
     }
 }
