@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AnnouncementContext))]
-    [Migration("20251031052553_Initial")]
+    [Migration("20251101113411_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -58,7 +58,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("announcements", (string)null);
+                    b.ToTable("Announcements");
                 });
 #pragma warning restore 612, 618
         }

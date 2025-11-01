@@ -15,9 +15,9 @@ namespace Domain.Entities
         public string Content { get; }
         public Guid CreatorId { get; }
         public DateOnly ExpirationDate { get; }
-        public DateTime CreatedAt { get; }
+        public DateTimeOffset CreatedAt { get; }
         public bool IsActive { get; }
-        private Announcement(string title, string content, Guid creatorId, DateOnly expDate, bool isActive, DateTime createdAt, Guid guid)
+        private Announcement(string title, string content, Guid creatorId, DateOnly expDate, bool isActive, DateTimeOffset createdAt, Guid guid)
         {
             Title = title;
             Content = content;
@@ -41,7 +41,7 @@ namespace Domain.Entities
             if (creatorId == Guid.Empty) throw new ArgumentNullException("CreatorId can not be empty or null");
             if (expDate < DateOnly.FromDateTime(DateTime.Now)) throw new ArgumentException("Expiration date can not be later than creation date");
             if (expDate == DateOnly.MinValue) throw new ArgumentException("Expiration date can not be empty");
-            DateTime createdAt = DateTime.Now;
+            var createdAt = DateTimeOffset.Now;
             var guid = System.Guid.NewGuid();
             return new Announcement(title, content, creatorId, expDate, true, createdAt, guid);
         }

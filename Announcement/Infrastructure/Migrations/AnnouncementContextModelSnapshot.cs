@@ -55,7 +55,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("announcements", (string)null);
+                    b.ToTable("Announcements", (string)null);
                 });
 #pragma warning restore 612, 618
         }
