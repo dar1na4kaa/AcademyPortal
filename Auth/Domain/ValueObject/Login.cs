@@ -13,7 +13,7 @@ public class Email: ValueObject<string>
     }
     public static Email Create(string value)
     {
-        if (string.IsNullOrWhiteSpace(value)) throw new LoginCreateException("Emnail cannot be empty");
+        if (string.IsNullOrWhiteSpace(value)) throw new LoginCreateException("Email cannot be empty");
         if (value.Length > 30) throw new LoginCreateException("Email cannot be greater than 30");
         if (!IsValidEmail(value)) throw new LoginCreateException("Email is not valid");
         
