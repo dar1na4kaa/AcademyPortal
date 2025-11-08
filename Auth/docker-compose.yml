@@ -1,0 +1,38 @@
+services:
+
+  academy-portal.announcement:
+    image: academy-portal.auth
+    container_name: academy-portal.auth
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=auth;Username=postgres;Password=postgres"
+    restart: always
+    ports:
+      - "5010:5010"
+    depends_on:
+      - postgres
+  
+  postgres:
+    image: postgres:latest
+    container_name: postgres_auth
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: auth
+      PGDATA: /var/lib/postgresql/data/PGDATA
+    ports:
+      - "5430:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d auth"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+
+volumes:
+  pgdata:
+    driver: local
