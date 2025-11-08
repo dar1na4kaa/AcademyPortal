@@ -13,7 +13,7 @@ public class UserTests
         var user = User.Create(email, password);
         Assert.Equal(email, user.Email.Value);
         Assert.True(user.Password.Verify(password));
-        Assert.NotEqual(Guid.Empty, user.Guid);
+        Assert.NotEqual(Guid.Empty, user.UserGuid);
     }
     
     [Fact]
@@ -25,7 +25,7 @@ public class UserTests
         var user = User.Create(email, password, guid);
         Assert.Equal(email, user.Email.Value);
         Assert.True(user.Password.Verify(password));
-        Assert.Equal(user.Guid, guid);
+        Assert.Equal(user.UserGuid, guid);
     }
 
     [Fact]

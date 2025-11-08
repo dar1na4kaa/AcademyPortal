@@ -4,20 +4,23 @@ namespace Domain.Entities;
 
 public class User
 {
-    public int Id { get; set; }
+    public int UserId { get; set; }
     
-    public Guid Guid { get; }
+    public Guid UserGuid { get; }
     
     public Password Password { get; private set; }
     
     public Email Email { get; private set; }
 
-    private User(string email, string password, Guid guid)
+    private User(string email, string password, Guid userGuid)
     {
-        Guid = guid;
+        UserGuid = userGuid;
         Email = Email.Create(email);
         Password = Password.Create(password);
     }
+    
+    private User() {}
+    
 
     public static User Create(string email, string password) => new(email, password, Guid.NewGuid());
     

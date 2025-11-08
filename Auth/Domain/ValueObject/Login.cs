@@ -20,7 +20,7 @@ public class Email: ValueObject<string>
         return new Email(value);
     }
     
-    static bool IsValidEmail(string email)
+    private static bool IsValidEmail(string email)
     {
         try
         {
