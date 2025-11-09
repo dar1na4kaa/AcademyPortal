@@ -1,0 +1,6 @@
+<Project>
+    <PropertyGroup>
+        <!-- Общий префикс namespace для всех проектов в solution -->
+        <RootNamespace>Shared.$(MSBuildProjectName)</RootNamespace>
+    </PropertyGroup>
+</Project>
