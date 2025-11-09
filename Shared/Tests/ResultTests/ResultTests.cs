@@ -1,5 +1,5 @@
 namespace Tests.ResultTests;
-using Result;
+using Shared.Result;
 public class ResultTests
 {
     [Fact]

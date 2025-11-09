@@ -1,4 +1,4 @@
-namespace Result;
+namespace Shared.Result;
 
 public record Error
 {
