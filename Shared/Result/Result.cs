@@ -9,8 +9,8 @@ public class Result
     public bool IsFailure => !IsSuccess;
     
     public Error Error { get; }
-    
-    public Result(bool isSuccess, Error error)
+
+    protected Result(bool isSuccess, Error error)
     {
         if (isSuccess && error != Error.None || !isSuccess && error == Error.None)
             throw new ArgumentException("Invalid error", nameof(Error));
@@ -34,7 +34,7 @@ public class Result<TValue> : Result
 {
     private readonly TValue? _value;
 
-    public Result(TValue? value, bool isSuccess, Error error) :base(isSuccess, error)
+    internal Result(TValue? value, bool isSuccess, Error error) :base(isSuccess, error)
     {
         _value = value;
     }
@@ -46,6 +46,4 @@ public class Result<TValue> : Result
 
     public static implicit operator Result<TValue>(TValue? value) =>
         value is not null ? Success(value) : Failure<TValue>(Error.NullValue);
-
-    
 }
