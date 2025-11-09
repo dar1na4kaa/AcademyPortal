@@ -2,7 +2,7 @@
 
 namespace Application;
 
-public class Class1(IAuthRepository repository)
+public class Class1(IUserRepository repository)
 {
     
 }

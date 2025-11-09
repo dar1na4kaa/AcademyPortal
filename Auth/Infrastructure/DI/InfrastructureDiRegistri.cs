@@ -8,7 +8,9 @@ namespace Infrastructure.DI;
 public static class InfrastructureDiRegistrar
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection service, IConfiguration configuration) =>
-        service.AddDatabase(configuration);
+        service
+            .AddDatabase(configuration)
+            .AddRepository();
     
     private static IServiceCollection AddDatabase(this IServiceCollection service, IConfiguration configuration)
     {
