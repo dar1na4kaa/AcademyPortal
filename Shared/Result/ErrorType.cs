@@ -4,5 +4,8 @@ public enum ErrorType
 {
     Failure,
     Validation,
-    NotFound
+    Problem,
+    NotFound,
+    Conflict,
+    
 }

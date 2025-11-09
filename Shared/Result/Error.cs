@@ -28,9 +28,9 @@ public record Error
     public static Error NotFound(string code, string description) =>
         new(code, description, ErrorType.NotFound);
 
-    // public static Error Problem(string code, string description) =>
-    //     new(code, description, ErrorType.Problem);
-    //
-    // public static Error Conflict(string code, string description) =>
-    //     new(code, description, ErrorType.Conflict);
+    public static Error Problem(string code, string description) =>
+        new(code, description, ErrorType.Problem);
+    
+    public static Error Conflict(string code, string description) =>
+        new(code, description, ErrorType.Conflict);
 }
