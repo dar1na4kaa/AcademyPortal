@@ -44,7 +44,6 @@ namespace Domain.Entities
             var createdAt = DateTimeOffset.Now;
             var guid = System.Guid.NewGuid();
             return new Announcement(title, content, creatorId, expDate, true, createdAt, guid);
-        }
-        //методы 
+        } 
     }
 }

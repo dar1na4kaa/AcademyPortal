@@ -1,8 +1,10 @@
-using Application;
+using Application.Dto;
 using Application.Interfaces;
 using Domain.Entities;
 using Infrastructure.Mappers;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Data.Repository;
 
@@ -23,24 +25,33 @@ public class AnnouncementRepository(AnnouncementContext context): IAnnouncementR
     {
         await context.SaveChangesAsync();  
     }
-/*    public async Task<Announcement> GetByPublishedDateAsync(DateOnly date)
-    {
-        var annon = await context.Announcements.Where(e => e.CreatedAt == date).FirstOrDefaultAsync();
-        return annon;
-    }
-    public async Task<Announcement> GetByAuthorAsync(Guid creatorId)
-    {
-        var annon = await context.Announcements.Where(e => e.CreatorId == creatorId).FirstOrDefaultAsync();
-        return annon;
-    }
-    public async Task<bool> ExistsAsync(Guid guid)
-    {
-        var annon = await GetByGuidAsync(guid);
-        var isActive = annon.IsActive;
-        return isActive;
-    }
-    public async Task DeleteAsync(Guid guid)
-    {
 
-    }*/
+    public async Task<IEnumerable<Announcement>> GetAnnouncementsByFilters(AnnouncementFilterDto filter)
+    {
+        var query = context.Announcements.AsQueryable();
+
+
+            if (!string.IsNullOrEmpty(filter.Title))
+                query = query.Where(a => a.Title.Contains(filter.Title));
+
+            if (!string.IsNullOrEmpty(filter.Content))
+                query = query.Where(a => a.Title.Contains(filter.Content));
+
+            if (filter.CreatorId.HasValue)
+                query = query.Where(a => a.CreatorId == filter.CreatorId);
+
+            if (filter.DateStart.HasValue)
+                query = query.Where(a => a.CreatedAt >= filter.DateStart);
+
+            if (filter.DateEnd.HasValue)
+                query = query.Where(a => a.CreatedAt <= filter.DateEnd);
+
+
+        return await query.ToListAsync();
+    }
+
+    public async Task<List<Announcement>> GetAnnouncements()
+    {
+        return await context.Announcements.ToListAsync();
+    }
 }
