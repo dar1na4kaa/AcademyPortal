@@ -6,12 +6,13 @@ namespace Application.Services;
 
 public class AnnouncementService(IAnnouncementRepository repository): IAnnouncementService
 {
-    public async Task CreateAsync(AnnouncementDTO announcement)
+    public async Task CreateAsync(CreateAnnouncementDto createAnnouncement)
     {
-       await repository.CreateAsync(announcement);
+       await repository.CreateAsync(createAnnouncement);
        await repository.SaveAsync();
+       Console.WriteLine("asdasd");
     }
-    public async Task<IEnumerable<AnnouncementDTO>> GetAnnouncementsByFilters(AnnouncementFilterDto filter)
+    public async Task<IEnumerable<CreateAnnouncementDto>> GetAnnouncementsByFilters(AnnouncementQueryParameters filter)
     {
         var announcements = await repository.GetAnnouncementsByFilters(filter);
 

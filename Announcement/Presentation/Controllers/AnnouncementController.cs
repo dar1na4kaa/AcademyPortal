@@ -9,7 +9,7 @@ namespace Presentation.Controllers
     public class AnnouncementController(IAnnouncementService service) : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> Create(AnnouncementDTO dto)
+        public async Task<IActionResult> Create(CreateAnnouncementDto dto)
         {
             await service.CreateAsync(dto);
 
@@ -17,10 +17,9 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] AnnouncementFilterDto filter)
+        public async Task<IActionResult> Get([FromQuery] AnnouncementQueryParameters filter)
         {
             var results = await service.GetAnnouncementsByFilters(filter);
-
             return Ok(results);
         }
     }

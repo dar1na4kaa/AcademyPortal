@@ -11,6 +11,6 @@ namespace Infrastructure.Mappers
 {
     public static class DtoToAnnoucements
     {
-        public static Announcement Map(this AnnouncementDTO dto) => Announcement.CreateAnnouncement(dto.Title, dto.Content, dto.CreatorId, dto.ExpirationDate);
+        public static Announcement Map(this CreateAnnouncementDto dto) => Announcement.CreateAnnouncement(dto.Title, dto.Content, dto.CreatorId, dto.ExpirationDate);
     }
 }

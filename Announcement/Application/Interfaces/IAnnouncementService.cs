@@ -5,6 +5,6 @@ namespace Application.Interfaces;
 
 public interface IAnnouncementService
 {
-    public Task CreateAsync(AnnouncementDTO announcement);
-    public Task<IEnumerable<AnnouncementDTO>> GetAnnouncementsByFilters(AnnouncementFilterDto filter);
+    public Task CreateAsync(CreateAnnouncementDto createAnnouncement);
+    public Task<IEnumerable<CreateAnnouncementDto>> GetAnnouncementsByFilters(AnnouncementQueryParameters filter);
 }

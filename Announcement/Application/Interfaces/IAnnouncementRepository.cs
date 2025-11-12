@@ -7,8 +7,8 @@ namespace Application.Interfaces;
 
 public interface IAnnouncementRepository
 {
-    public Task CreateAsync(AnnouncementDTO announcement);
+    public Task CreateAsync(CreateAnnouncementDto createAnnouncement);
     public Task<Announcement> GetByGuidAsync(Guid guid);
     public Task SaveAsync();
-    public Task<IEnumerable<Announcement>> GetAnnouncementsByFilters(AnnouncementFilterDto filter);
+    public Task<IEnumerable<Announcement>> GetAnnouncementsByFilters(AnnouncementQueryParameters filter);
 }

@@ -11,6 +11,12 @@ namespace Application.Mappers
 {
     public static class AnnoucementsToDto
     {
-        public static AnnouncementDTO Map(this Announcement announcement) => AnnouncementDTO.CreateAnnouncementDTO(announcement.Title, announcement.Content, announcement.CreatorId, announcement.ExpirationDate);
+        public static CreateAnnouncementDto Map(this Announcement announcement) => new()
+        {
+            Title = announcement.Title,
+            Content = announcement.Content,
+            CreatorId = announcement.CreatorId,
+            ExpirationDate = announcement.ExpirationDate
+        };
     }
 }
