@@ -7,7 +7,7 @@ public class UserContext: DbContext
 {
     public UserContext(DbContextOptions<UserContext> options): base(options) { }
 
-    public DbSet<User> Users;
+    public DbSet<User> Users { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>(entity =>
@@ -31,6 +31,8 @@ public class UserContext: DbContext
                 });
                 
                 entity.Property(e => e.UserGuid).IsRequired();
+
+                entity.ToTable("Users");
             }
             );
     }
