@@ -8,7 +8,7 @@ namespace Presentation.Controllers
     [Route("api/[controller]/")]
     public class AnnouncementController(IAnnouncementService service) : ControllerBase
     {
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> Create(AnnouncementDTO dto)
         {
             await service.CreateAsync(dto);
@@ -16,15 +16,7 @@ namespace Presentation.Controllers
             return Ok();
         }
 
-        [HttpGet("get")]
-        public async Task<IActionResult> Get()
-        {
-            var results = await service.GetAnnouncements();
-
-            return Ok(results);
-        }
-
-        [HttpGet("get")]
+        [HttpGet]
         public async Task<IActionResult> Get([FromQuery] AnnouncementFilterDto filter)
         {
             var results = await service.GetAnnouncementsByFilters(filter);
