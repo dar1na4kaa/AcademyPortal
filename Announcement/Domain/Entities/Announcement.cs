@@ -41,10 +41,9 @@ namespace Domain.Entities
             if (creatorId == Guid.Empty) throw new ArgumentNullException("CreatorId can not be empty or null");
             if (expDate < DateOnly.FromDateTime(DateTime.Now)) throw new ArgumentException("Expiration date can not be later than creation date");
             if (expDate == DateOnly.MinValue) throw new ArgumentException("Expiration date can not be empty");
-            var createdAt = DateTimeOffset.Now;
+            var createdAt = DateTimeOffset.UtcNow;
             var guid = System.Guid.NewGuid();
             return new Announcement(title, content, creatorId, expDate, true, createdAt, guid);
-        }
-        //методы 
+        } 
     }
 }
