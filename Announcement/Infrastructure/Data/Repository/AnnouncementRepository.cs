@@ -18,7 +18,6 @@ public class AnnouncementRepository(AnnouncementContext context): IAnnouncementR
     public async Task CreateAsync(AnnouncementDTO announcement)
     {
         var entity = announcement.Map();
-        Console.WriteLine();
         await context.Announcements.AddAsync(entity);
     }
     public async Task SaveAsync()
@@ -28,7 +27,7 @@ public class AnnouncementRepository(AnnouncementContext context): IAnnouncementR
 
     public async Task<IEnumerable<Announcement>> GetAnnouncementsByFilters(AnnouncementFilterDto filter)
     {
-        var query = context.Announcements.AsQueryable();
+        var query = context.Announcements.AsNoTracking().AsQueryable();
 
 
             if (!string.IsNullOrEmpty(filter.Title))
@@ -45,13 +44,7 @@ public class AnnouncementRepository(AnnouncementContext context): IAnnouncementR
 
             if (filter.DateEnd.HasValue)
                 query = query.Where(a => a.CreatedAt <= filter.DateEnd);
-
-
+            
         return await query.ToListAsync();
-    }
-
-    public async Task<List<Announcement>> GetAnnouncements()
-    {
-        return await context.Announcements.ToListAsync();
     }
 }

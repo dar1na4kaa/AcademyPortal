@@ -13,15 +13,14 @@ builder.Services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
 builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-var connectionString = builder.Configuration.GetConnectionString("ConnectionString"); //builder.Configuration.GetConnectionString();
-builder.Services.AddDbContext<AnnouncementContext>(options => options.UseNpgsql(connectionString));
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+builder.Services.AddDbContext<AnnouncementContext>(options => options.UseNpgsql(connectionString));
 var app = builder.Build();
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AnnouncementContext>();
-    //db.Database.Migrate();
+    db.Database.Migrate();
 }
 
     // Configure the HTTP request pipeline.

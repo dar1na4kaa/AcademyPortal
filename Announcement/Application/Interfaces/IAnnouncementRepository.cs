@@ -11,5 +11,4 @@ public interface IAnnouncementRepository
     public Task<Announcement> GetByGuidAsync(Guid guid);
     public Task SaveAsync();
     public Task<IEnumerable<Announcement>> GetAnnouncementsByFilters(AnnouncementFilterDto filter);
-    public Task<List<Announcement>> GetAnnouncements();
 }
